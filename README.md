@@ -1,0 +1,2 @@
+# tamagotchi
+Unity Tamagotchi game
