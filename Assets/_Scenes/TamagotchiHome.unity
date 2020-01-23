@@ -5462,7 +5462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977052102}
   m_Layer: 0
-  m_Name: StatusUiPoint
+  m_Name: StateUiPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
