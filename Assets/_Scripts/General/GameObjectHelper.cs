@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameObjectHelper
 {
-
     public GameObject GetReferenceToGameObject(string gameObjectName) {
         var foundGameObject = GameObject.Find(gameObjectName);
 

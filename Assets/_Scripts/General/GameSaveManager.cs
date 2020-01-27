@@ -1,35 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameSaveManager
 {
-    public void SaveCatStateToPlayerPrefs(CatStatus catStatus) {
-        PlayerPrefs.SetString(GameConstants.SAVE_FILE_CAT_NAME_KEY, catStatus.Name);
-        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_HUNGER_KEY, catStatus.Hunger);
-        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_LOVE_KEY, catStatus.Love);
-        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_PLAY_KEY, catStatus.Play);
-        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_SLEEP_KEY, catStatus.Sleep);
+    /*  EVENTS  */
+    public delegate void PetStateSavedEventHandler(IPetStatus petStatus);
+    public static event PetStateSavedEventHandler PetStateSaved;
+
+    public void SavePetStateToPlayerPrefs(IPetStatus petStatus) {
+        PlayerPrefs.SetString(GameConstants.SAVE_FILE_CAT_NAME_KEY, petStatus.Name);
+        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_HUNGER_KEY, petStatus.Hunger);
+        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_LOVE_KEY, petStatus.Love);
+        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_PLAY_KEY, petStatus.Play);
+        PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_SLEEP_KEY, petStatus.Sleep);
 
         PlayerPrefs.Save();
+
+        PetStateSaved?.Invoke(petStatus);
     }
 
-    public void LoadCatStateFromPlayerPrefs(CatStatus catStatus) {
+    public void LoadPetStateFromPlayerPrefs(IPetStatus petStatus) {
 
         if(PlayerPrefs.HasKey(GameConstants.SAVE_FILE_CAT_NAME_KEY)) {
-            catStatus.Name = PlayerPrefs.GetString(GameConstants.SAVE_FILE_CAT_NAME_KEY);
+            petStatus.Name = PlayerPrefs.GetString(GameConstants.SAVE_FILE_CAT_NAME_KEY);
         }
         if(PlayerPrefs.HasKey(GameConstants.SAVE_FILE_CAT_HUNGER_KEY)) {
-            catStatus.Hunger = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_HUNGER_KEY);
+            petStatus.Hunger = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_HUNGER_KEY);
         }
         if(PlayerPrefs.HasKey(GameConstants.SAVE_FILE_CAT_LOVE_KEY)) {
-            catStatus.Love = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_LOVE_KEY);
+            petStatus.Love = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_LOVE_KEY);
         }
         if(PlayerPrefs.HasKey(GameConstants.SAVE_FILE_CAT_PLAY_KEY)) {
-            catStatus.Play = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_PLAY_KEY);
+            petStatus.Play = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_PLAY_KEY);
         }
         if(PlayerPrefs.HasKey(GameConstants.SAVE_FILE_CAT_SLEEP_KEY)) {
-            catStatus.Sleep = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_SLEEP_KEY);
+            petStatus.Sleep = PlayerPrefs.GetFloat(GameConstants.SAVE_FILE_CAT_SLEEP_KEY);
         }
     }
 }
