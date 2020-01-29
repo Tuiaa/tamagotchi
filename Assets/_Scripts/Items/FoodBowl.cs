@@ -2,33 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ *      FOOD BOWL
+ *      - Interactive item which is used for feeding the pet
+ *      - Fills the bowl with food when tapped
+ *      - Items are still WIP so not fully designed what it does and how
+ * 
+ */
 public class FoodBowl : MonoBehaviour, IInteractable, IItem
 {
     [SerializeField] private GameObject _foodSprite;
 
-    // If food bowl is tapped, it should always fill the food
-    // Food bowl doesn't care if there's food left in inventory or not
+    // At some point it should check if there's any food left in inventory
+    // Still WIP so doesn't do the check yet
     public void Interact()
     {
         if (_foodSprite != null)
         {
             _foodSprite.SetActive(true);
         }
-    }
-
-    public void AddCount()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void DeductCount()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void GetCount()
-    {
-        throw new System.NotImplementedException();
     }
 
     public GameObject GetGameObjectReference()

@@ -1,5 +1,12 @@
 ﻿using UnityEngine;
 
+/*
+ *  GAME SAVE MANAGER
+ *  - Saves the current state of a pet
+ *  - Currently uses PlayerPrefs but will change into another system
+ *    later when saving all items the player has bought
+ * 
+ */
 public class GameSaveManager
 {
     /*  EVENTS  */
@@ -14,7 +21,6 @@ public class GameSaveManager
         PlayerPrefs.SetFloat(GameConstants.SAVE_FILE_CAT_SLEEP_KEY, petStatus.Sleep);
 
         PlayerPrefs.Save();
-
         PetStateSaved?.Invoke(petStatus);
     }
 

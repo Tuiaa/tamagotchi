@@ -1,4 +1,8 @@
-﻿public class GameConstants
+﻿/*
+ *      GAME CONSTANTS
+ *      - All strings that are used in code base
+ */
+public class GameConstants
 {
     /*  CAT CONSTS  */
     public const string CAT_DEFAULT_NAME = "Jupiter";

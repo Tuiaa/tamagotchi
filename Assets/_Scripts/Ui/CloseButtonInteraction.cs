@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CloseButtonInteraction : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject _uiParent;
+    [SerializeField] private GameObject _uiToHide;
 
     public void Interact()
     {
-        if(_uiParent != null)
+        if(_uiToHide != null)
         {
-            _uiParent.SetActive(false);
+            _uiToHide.SetActive(false);
         }
     }
 }

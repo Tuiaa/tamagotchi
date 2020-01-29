@@ -1,30 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
+/*
+ *      INVENTORY
+ *      - Has list of all owned items
+ *      - Can later be queried so we get for example all decorations
+ *        or consumable items
+ *      - Items are still WIP so not fully designed what it does and how
+ * 
+ */
 public class Inventory
 {
-    private List<Transform> _ownedItems = new List<Transform>();
+    private List<IItem> _ownedItems = new List<IItem>();
 
-    public void AddItemToOwnedItemsList(Transform boughtItem)
+    public void AddItemToOwnedItemsList(IItem boughtItem)
     {
         _ownedItems.Add(boughtItem);
     }
 
-    public List<Transform> GetAllOwnedItems()
+    public List<IItem> GetAllOwnedItems()
     {
         return _ownedItems;
     }
-
-   /* public List<Transform> GetAllConsumableItems()
-    {
-        foreach (var item in _ownedItems)
-        {
-            if(item is IDecoration)
-            {
-
-            }
-        }
-    }*/
 }

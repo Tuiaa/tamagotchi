@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatStatus : IPetStatus
+/*
+ *      PET STATUS
+ *      - Takes care of the curret status of the pet
+ * 
+ */
+public class PetStatus : IPetStatus
 {
     /*  GENERAL  */
     private string _name = GameConstants.CAT_DEFAULT_NAME;

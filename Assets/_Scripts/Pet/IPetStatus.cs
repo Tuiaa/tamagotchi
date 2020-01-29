@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IPetStatus
+﻿public interface IPetStatus
 {
     string Name { get; set; }
     float Hunger { get; set; }

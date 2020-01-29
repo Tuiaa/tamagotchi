@@ -2,18 +2,43 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ *      UI MANAGER
+ *      - Currently handles all changes in UI's
+ *      - Will refactor later so that differet UI's get updated from other
+ *        classes handled by UiManager (will do for now until I get
+ *        the project started)
+ * 
+ */
 public class UiManager : MonoBehaviour
 {
+    /*  MANAGERS  */
+    [SerializeField] private PetManager _petManager;
+
     /*  DIARY   */
-    private DiaryUpdater _diaryUpdater = new DiaryUpdater();
+    [SerializeField] private GameObject _diaryUiParent;
     [SerializeField] private List<Text> _diaryUiFields;
+
 
     void Awake()
     {
         RegisterEvents();
     }
 
-    public void UpdateDiaryValues(IPetStatus petStatus) {
+    public void UpdateAndDisplayDiary()
+    {
+        if (_petManager == null || _diaryUiParent == null)
+        {
+            Debug.LogWarning("UiManager: Missing references");
+            return;
+        }
+
+        UpdateDiaryValues(_petManager.GetCurrentPetState());
+        _diaryUiParent.SetActive(true);
+    }
+
+    public void UpdateDiaryValues(IPetStatus petStatus)
+    {
         if (_diaryUiFields.Count > 0)
         {
             foreach (Text value in _diaryUiFields)
@@ -26,11 +51,13 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void RegisterEvents() {
-        GameSaveManager.PetStateSaved += UpdateDiaryValues;
+    public void RegisterEvents()
+    {
+        Diary.DiaryClicked += UpdateAndDisplayDiary;
     }
 
-    public void UnRegisterEvents() {
-        GameSaveManager.PetStateSaved -= UpdateDiaryValues;
+    public void UnRegisterEvents()
+    {
+        Diary.DiaryClicked -= UpdateAndDisplayDiary;
     }
 }
