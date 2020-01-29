@@ -30,4 +30,9 @@ public class FoodBowl : MonoBehaviour, IInteractable, IItem
     {
         throw new System.NotImplementedException();
     }
+
+    public GameObject GetGameObjectReference()
+    {
+        return gameObject;
+    }
 }

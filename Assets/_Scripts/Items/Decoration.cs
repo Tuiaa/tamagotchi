@@ -29,4 +29,9 @@ public class Decoration : MonoBehaviour, IDecoration, IItem
     {
         throw new System.NotImplementedException();
     }
+
+    public GameObject GetGameObjectReference()
+    {
+        return gameObject;
+    }
 }

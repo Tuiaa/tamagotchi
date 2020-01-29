@@ -1,6 +1,9 @@
-﻿public interface IItem
+﻿using UnityEngine;
+
+public interface IItem
 {
     void GetCount();
     void AddCount();
     void DeductCount();
+    GameObject GetGameObjectReference();
 }

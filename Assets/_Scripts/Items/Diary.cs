@@ -28,4 +28,9 @@ public class Diary : MonoBehaviour, IInteractable, IItem
     {
         throw new System.NotImplementedException();
     }
+
+    public GameObject GetGameObjectReference()
+    {
+        return gameObject;
+    }
 }
