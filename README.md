@@ -1,8 +1,8 @@
-# tamagotchi
+# Tamagotchi
 Unity Tamagotchi game
 
-Naming convention
-- mix between unity and microsoft c# naming conventions
+## Idea
+A small game where you take care of a pet you have adopted
 
-Purpose
-- to practice unity architecture
+## General
+Made with Unity2019.3 and C#
