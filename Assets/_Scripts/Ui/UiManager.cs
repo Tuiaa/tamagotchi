@@ -19,10 +19,17 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject _diaryUiParent;
     [SerializeField] private List<Text> _diaryUiFields;
 
+    /*   PET ACTIVITY STATUS TEXT    */
+    [SerializeField] private Text _petActivityStatusText;
 
     void Awake()
     {
         RegisterEvents();
+    }
+
+    void OnDestroy()
+    {
+        UnRegisterEvents();
     }
 
     private void UpdateAndDisplayDiary()
@@ -51,13 +58,49 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    private void UpdatePetActivityStatusText(Activity activityStatus)
+    {
+        if (_petActivityStatusText == null)
+        {
+            Debug.LogWarning("UiManager: Missig references");
+            return;
+        }
+
+        switch(activityStatus)
+        {
+            case Activity.Walking:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_WALKING_STRING;
+                return;
+            case Activity.Sleeping:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_SLEEPING_STRING;
+                return;
+            case Activity.Eating:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_EATING_STRING;
+                return;
+            case Activity.Playing:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_PLAYING_STRING;
+                return;
+            case Activity.Sitting:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_SITTING_STRING;
+                return;
+            case Activity.Messing:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_MESSING_STRING;
+                return;
+            default:
+                _petActivityStatusText.text = GameConstants.PET_ACTIVITY_DEFAULT_STRING;
+                return;
+        }
+    }
+
     private void RegisterEvents()
     {
         Diary.DiaryClicked += UpdateAndDisplayDiary;
+        PetActivity.PetBehaviorChanged += UpdatePetActivityStatusText;
     }
 
     private void UnRegisterEvents()
     {
         Diary.DiaryClicked -= UpdateAndDisplayDiary;
+        PetActivity.PetBehaviorChanged -= UpdatePetActivityStatusText;
     }
 }
