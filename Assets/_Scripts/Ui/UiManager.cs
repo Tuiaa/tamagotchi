@@ -25,7 +25,7 @@ public class UiManager : MonoBehaviour
         RegisterEvents();
     }
 
-    public void UpdateAndDisplayDiary()
+    private void UpdateAndDisplayDiary()
     {
         if (_petManager == null || _diaryUiParent == null)
         {
@@ -37,7 +37,7 @@ public class UiManager : MonoBehaviour
         _diaryUiParent.SetActive(true);
     }
 
-    public void UpdateDiaryValues(IPetStatus petStatus)
+    private void UpdateDiaryValues(IPetStatus petStatus)
     {
         if (_diaryUiFields.Count > 0)
         {
@@ -51,12 +51,12 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void RegisterEvents()
+    private void RegisterEvents()
     {
         Diary.DiaryClicked += UpdateAndDisplayDiary;
     }
 
-    public void UnRegisterEvents()
+    private void UnRegisterEvents()
     {
         Diary.DiaryClicked -= UpdateAndDisplayDiary;
     }
